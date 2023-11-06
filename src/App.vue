@@ -1,9 +1,16 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from "vue";
 import FirstPage from "./components/FirstPage.vue";
+
+export default defineComponent({
+  components: {
+    FirstPage,
+  },
+});
 </script>
 
 <template>
-  <FirstPage msg="Vite + Vue" />
+  <FirstPage />
 </template>
 
 <style lang="scss">

@@ -27,10 +27,16 @@
           <h1>Noah Nielsen</h1>
           <hr />
           <div class="icons">
-            <v-icon name="vi-file-type-html " scale="3" />
-            <v-icon name="fc-globe" />
-            <v-icon name="oi-repo-pull" />
-            <v-icon name="vi-file-type-gridsome" />
+            <a href="#linkedin">
+              <v-icon name="fa-linkedin" scale="1.5" />
+            </a>
+            <a href="#discord">
+              <v-icon name="fa-discord" scale="1.5" />
+            </a>
+            <a href="#github"> <v-icon name="fa-github" scale="1.5" /></a>
+            <a href="#gmail">
+              <v-icon name="fa-google" scale="1.5" />
+            </a>
           </div>
         </div>
       </div>
@@ -38,65 +44,67 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref, onMounted } from "vue";
+
 export default {
   name: "typeWiriter",
-  data: () => {
-    return {
-      typeValue: "",
-      typeStatus: false,
-      displayTextArray: [
-        "FullStack Udvikler",
-        "Freelancer",
-        "Database Ekspert",
-        "SEO Ekspert",
-        "WordPress Udvikler",
-        "JavaScript Ekspert",
-      ],
-      typingSpeed: 100,
-      erasingSpeed: 100,
-      newTextDelay: 2000,
-      displayTextArrayIndex: 0,
-      charIndex: 0,
+  setup() {
+    const typeValue = ref("");
+    const typeStatus = ref(false);
+    const displayTextArray = [
+      "FullStack Udvikler",
+      "Freelancer",
+      "Database Ekspert",
+      "SEO Ekspert",
+      "WordPress Udvikler",
+      "JavaScript Ekspert",
+    ];
+    const typingSpeed = 100;
+    const erasingSpeed = 100;
+    const newTextDelay = 2000;
+    let displayTextArrayIndex = 0;
+    let charIndex = 0;
+
+    const typeText = () => {
+      if (charIndex < displayTextArray[displayTextArrayIndex].length) {
+        if (!typeStatus.value) typeStatus.value = true;
+        typeValue.value +=
+          displayTextArray[displayTextArrayIndex].charAt(charIndex);
+        charIndex += 1;
+        setTimeout(typeText, typingSpeed);
+      } else {
+        typeStatus.value = false;
+        setTimeout(eraseText, newTextDelay);
+      }
     };
-  },
-  props: {},
-  created() {
-    setTimeout(this.typeText, this.newTextDelay + 200);
-  },
-  methods: {
-    typeText() {
-      if (
-        this.charIndex <
-        this.displayTextArray[this.displayTextArrayIndex].length
-      ) {
-        if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue += this.displayTextArray[
-          this.displayTextArrayIndex
-        ].charAt(this.charIndex);
-        this.charIndex += 1;
-        setTimeout(this.typeText, this.typingSpeed);
+
+    const eraseText = () => {
+      if (charIndex > 0) {
+        if (!typeStatus.value) typeStatus.value = true;
+        typeValue.value = displayTextArray[displayTextArrayIndex].substring(
+          0,
+          charIndex - 1
+        );
+        charIndex -= 1;
+        setTimeout(eraseText, erasingSpeed);
       } else {
-        this.typeStatus = false;
-        setTimeout(this.eraseText, this.newTextDelay);
+        typeStatus.value = false;
+        displayTextArrayIndex += 1;
+        if (displayTextArrayIndex >= displayTextArray.length)
+          displayTextArrayIndex = 0;
+        setTimeout(typeText, typingSpeed + 1000);
       }
-    },
-    eraseText() {
-      if (this.charIndex > 0) {
-        if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue = this.displayTextArray[
-          this.displayTextArrayIndex
-        ].substring(0, this.charIndex - 1);
-        this.charIndex -= 1;
-        setTimeout(this.eraseText, this.erasingSpeed);
-      } else {
-        this.typeStatus = false;
-        this.displayTextArrayIndex += 1;
-        if (this.displayTextArrayIndex >= this.displayTextArray.length)
-          this.displayTextArrayIndex = 0;
-        setTimeout(this.typeText, this.typingSpeed + 1000);
-      }
-    },
+    };
+
+    onMounted(() => {
+      setTimeout(typeText, newTextDelay + 200);
+    });
+
+    return {
+      typeValue,
+      typeStatus,
+    };
   },
 };
 </script>
@@ -294,5 +302,10 @@ span {
   transform: rotate(-90deg);
   margin-left: 1rem;
   font-size: 2rem;
+}
+
+.icons a {
+  text-decoration: none;
+  color: $background-color;
 }
 </style>
