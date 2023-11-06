@@ -3,12 +3,12 @@
     <div id="left-con">
       <h1>Portfolio</h1>
       <div class="img-con">
-        <img
-          src="@/assets/selfie.png"
-          alt=""
-        />
+        <img src="@/assets/image-4(1).jpg" alt="" />
       </div>
-      <p id="quote">When I wrote this code, only God and I understood what I did. Now only God knows.</p>
+      <p id="quote">
+        When I wrote this code, only God and I understood what I did. Now only
+        God knows.
+      </p>
     </div>
     <div id="right-con">
       <nav>
@@ -17,11 +17,21 @@
         <a href="#github">Github</a>
       </nav>
       <div class="right-child">
-        <h2>Mit <strong>Arbejde</strong></h2>
         <div>
+          <h2>Mit <strong>Arbejde</strong></h2>
           <span class="typed-text">{{ typeValue }}</span>
-      <span class="blinking-cursor">|</span>
-      <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+          <span class="blinking-cursor">|</span>
+          <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+        </div>
+        <div class="vertical-sidebar">
+          <h1>Noah Nielsen</h1>
+          <hr />
+          <div class="icons">
+            <v-icon name="vi-file-type-html " scale="3" />
+            <v-icon name="fc-globe" />
+            <v-icon name="oi-repo-pull" />
+            <v-icon name="vi-file-type-gridsome" />
+          </div>
         </div>
       </div>
     </div>
@@ -35,7 +45,14 @@ export default {
     return {
       typeValue: "",
       typeStatus: false,
-      displayTextArray: ["FullStack Udvikler", "Freelancer", "Database Ekspert", "SEO Ekspert", "WordPress Udvikler"],
+      displayTextArray: [
+        "FullStack Udvikler",
+        "Freelancer",
+        "Database Ekspert",
+        "SEO Ekspert",
+        "WordPress Udvikler",
+        "JavaScript Ekspert",
+      ],
       typingSpeed: 100,
       erasingSpeed: 100,
       newTextDelay: 2000,
@@ -49,11 +66,14 @@ export default {
   },
   methods: {
     typeText() {
-      if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+      if (
+        this.charIndex <
+        this.displayTextArray[this.displayTextArrayIndex].length
+      ) {
         if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
-          this.charIndex
-        );
+        this.typeValue += this.displayTextArray[
+          this.displayTextArrayIndex
+        ].charAt(this.charIndex);
         this.charIndex += 1;
         setTimeout(this.typeText, this.typingSpeed);
       } else {
@@ -64,10 +84,9 @@ export default {
     eraseText() {
       if (this.charIndex > 0) {
         if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
-          0,
-          this.charIndex - 1
-        );
+        this.typeValue = this.displayTextArray[
+          this.displayTextArrayIndex
+        ].substring(0, this.charIndex - 1);
         this.charIndex -= 1;
         setTimeout(this.eraseText, this.erasingSpeed);
       } else {
@@ -90,8 +109,19 @@ export default {
   #left-con {
     width: 30vw;
     background-color: $background-color;
-    text-align: center;
     color: $secondary-color;
+    margin: 0;
+
+    h1,
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 10%;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+    }
   }
 
   #right-con {
@@ -122,23 +152,29 @@ export default {
   }
 
   @font-face {
-  font-family: 'trebuc';
-  src: url('@/assets/fonts/trebuc.ttf') format('truetype');
-}
+    font-family: "trebuc";
+    src: url("@/assets/fonts/trebuc.ttf") format("truetype");
+  }
 
   .right-child {
     height: calc(100vh - 10vh - 8px);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .vertical-sidebar {
+      margin-right: -20vh;
+      position: absolute;
+      right: 0;
+      top: 50%;
+    }
 
     h2 {
       margin: 0;
       font-family: trebuc;
       font-size: 6rem;
       text-transform: uppercase;
-      
+
       strong {
         color: $background-color;
       }
@@ -150,7 +186,7 @@ export default {
     z-index: 9999;
     margin-left: 2vw;
     width: 100%;
-    height: 75vh;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -164,11 +200,10 @@ export default {
       box-shadow: 0 0 0 15px $background-color, 0 0 0 60px $secondary-color,
         0 0 0 70px $background-color;
 
-        @media screen and (max-width: 800px) 
-        {
-          box-shadow: 0 0 0 10px $background-color, 0 0 0 30px $secondary-color,
-        0 0 0 40px $background-color;
-        }
+      @media screen and (max-width: 800px) {
+        box-shadow: 0 0 0 10px $background-color, 0 0 0 30px $secondary-color,
+          0 0 0 40px $background-color;
+      }
     }
   }
 }
@@ -229,6 +264,35 @@ export default {
 }
 
 span {
+  font-size: 2rem;
+}
+
+.vertical-sidebar {
+  width: 60vh;
+  color: $background-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
+  margin: 0;
+
+  hr {
+    width: 3rem;
+    color: $background-color;
+    margin: 0;
+    margin-left: 2%;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+}
+
+.icons svg {
+  transform: rotate(-90deg);
+  margin-left: 1rem;
   font-size: 2rem;
 }
 </style>
