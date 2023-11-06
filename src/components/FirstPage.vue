@@ -24,7 +24,6 @@
 
   #left-con {
     width: 30vw;
-    padding: 1rem;
     background-color: $background-color;
     text-align: center;
     color: $secondary-color;
@@ -38,7 +37,8 @@
   .img-con {
     position: sticky;
     z-index: 9999;
-    width: 20vw;
+    width: 100%;
+    border: 2px solid hotpink;
     margin-right: -20vw;
     height: 80vh;
     display: flex;
@@ -46,7 +46,7 @@
     justify-content: flex-end;
 
     img {
-      width: 60%;
+      width: 90%;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       box-shadow: 0 0 0 10px $background-color, 0 0 0 35px $secondary-color,
