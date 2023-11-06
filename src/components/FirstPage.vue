@@ -46,11 +46,11 @@
     justify-content: flex-end;
 
     img {
-      width: 90%;
+      width: 85%;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      box-shadow: 0 0 0 10px $background-color, 0 0 0 35px $secondary-color,
-        0 0 0 45px $background-color;
+      box-shadow: 0 0 0 10px $background-color, 0 0 0 55px $secondary-color,
+        0 0 0 65px $background-color;
     }
   }
 }
