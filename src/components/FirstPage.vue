@@ -276,6 +276,8 @@ export default {
 
 span {
   font-size: 2rem;
+  cursor: default;
+  user-select: none;
 }
 
 .vertical-sidebar {

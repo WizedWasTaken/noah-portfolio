@@ -1,124 +1,94 @@
 <template>
-    <div class="first-container" id="aboutme">
+    <div id="first-container">
       <div id="left-con">
-        <h1>{{ currentPageDescription }}</h1>
+        <h1>Beskrivelse</h1>
       </div>
       <div id="right-con">
-        <swiper ref="swiper">
-          <swiper-slide v-for="page in pages" :key="page.id">
-            <!-- Display page content here -->
-            <div class="page-content">
-              <h2>{{ page.title }}</h2>
-              <p>{{ page.content }}</p>
-            </div>
+        <swiper
+          :modules="swiperModules"
+        >
+          <swiper-slide v-for="(slide, index) in slides" :key="index">
+            {{ slide }}
           </swiper-slide>
         </swiper>
       </div>
     </div>
   </template>
   
-  <script>
-  import axios from 'axios';
-  import Swiper from 'vue-awesome-swiper';
-  import 'swiper/css/swiper.css';
+  <script lang="ts">
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+  import 'swiper/css';
   
   export default {
-    data() {
-      return {
-        pages: [],
-        currentPageDescription: 'Beskrivelse af siden',
-      };
-    },
-    mounted() {
-      this.fetchPages();
-    },
-    methods: {
-      async fetchPages() {
-        try {
-          // Make an Axios request to fetch the list of folders and pageInfo.json content.
-          const response = await axios.get('/api/getPages');
-          this.pages = response.data;
-        } catch (error) {
-          console.error('Error fetching pages:', error);
-        }
-      },
-      onSlideChange() {
-        // Update the "Beskrivelse af siden" when the slide changes.
-        const currentPage = this.$refs.swiper.swiper.realIndex;
-        this.currentPageDescription = this.pages[currentPage].description;
-      },
-    },
     components: {
       Swiper,
+      SwiperSlide,
+    },
+    data() {
+      return {
+        slides: ['Slide 1', 'Slide 2', 'Slide 3'],
+      };
     },
   };
   </script>
   
-
-<style lang="scss" scoped>
-.first-container {
-  height: 100vh;
-  display: flex;
-
-  #left-con {
-    width: 30vw;
-    background-color: $background-color;
-    color: $secondary-color;
-    margin: 0;
+  <style lang="scss" scoped>
+  #first-container {
+    height: 100vh;
     display: flex;
-    align-items: center;
-
-    h1,
-    p {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 10%;
-      width: 100%;
+  
+    #left-con {
+      width: 30vw;
+      background-color: $background-color;
+      color: $secondary-color;
       margin: 0;
-      text-align: center;
-    }
-  }
-
-
-  #right-con {
-    width: 100%;
-    border-bottom: 8px solid $background-color;
-  }
-
-  .right-child {
-    height: calc(100vh - 10vh - 8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .vertical-sidebar {
-      margin-right: -20vh;
-      position: absolute;
-      right: 0;
-      top: 50%;
-    }
-
-    h2 {
-      margin: 0;
-      font-family: trebuc;
-      font-size: 6rem;
-      text-transform: uppercase;
-
-      strong {
-        color: $background-color;
+      border-bottom: 8px solid white;
+  
+      h1,
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 10%;
+        width: 100%;
+        margin: 0;
+        text-align: center;
       }
     }
+  
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      height: 10vh;
+      position: absolute;
+      right: 0;
+  
+      a {
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        color: gray;
+        text-transform: uppercase;
+        border-radius: 25%;
+        transition: 250ms;
+  
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  
+    #right-con {
+      width: 70vw;
+      border-bottom: 8px solid $background-color;
+    }
+  
+    @font-face {
+      font-family: "trebuc";
+      src: url("@/assets/fonts/trebuc.ttf") format("truetype");
+    }
   }
-}
-
-.page-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  /* Add any additional styles for the content displayed in the slider */
-}
-</style>
+  </style>
+  
