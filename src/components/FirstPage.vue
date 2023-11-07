@@ -119,6 +119,7 @@ export default {
     background-color: $background-color;
     color: $secondary-color;
     margin: 0;
+    border-bottom: 8px solid white;
 
     h1,
     p {
@@ -132,17 +133,15 @@ export default {
     }
   }
 
-  #right-con {
-    width: 100%;
-    border-bottom: 8px solid $background-color;
-
-    nav {
+  nav {
       width: 100%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
       height: 10vh;
+      position: absolute;
+      right: 0;
 
       a {
         padding: 1rem 1.5rem;
@@ -157,6 +156,10 @@ export default {
         }
       }
     }
+
+  #right-con {
+    width: 100%;
+    border-bottom: 8px solid $background-color;
   }
 
   @font-face {
