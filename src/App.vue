@@ -1,9 +1,10 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+// @ts-ignore
 import FirstPage from "@/components/FirstPage.vue";
+// @ts-ignore
 import PortfolioPage from "@/components/PortfolioPage.vue";
 
-export default defineComponent({
+export default ({
   components: {
     FirstPage,
     PortfolioPage

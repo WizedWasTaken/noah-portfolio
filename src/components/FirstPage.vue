@@ -47,8 +47,8 @@
 <script lang="ts">
 import { ref, onMounted } from "vue";
 
-export default {
-  name: "typeWiriter",
+export default({
+  name: "FirstPage",
   setup() {
     const typeValue = ref("");
     const typeStatus = ref(false);
@@ -106,7 +106,7 @@ export default {
       typeStatus,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
