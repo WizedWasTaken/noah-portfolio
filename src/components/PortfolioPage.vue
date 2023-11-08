@@ -1,6 +1,6 @@
 <!-- @ts-nocheck -->
 <template>
-  <div id="portfolio" class="first-container">
+  <div id="portfolio" class="first-container scroll-snap-item">
     <div id="left-con">
       <h1>Projekt beskrivelse</h1>
       <p v-if="selectedProject && selectedProject.description">
@@ -88,7 +88,7 @@ export default {
 
     const modules = [Autoplay, Pagination, Navigation, History];
 
-    let siteInfoData = {}; 
+    let siteInfoData = {};
 
     const fetchProjects = async () => {
       try {
@@ -98,7 +98,7 @@ export default {
         projects.value = data.projects;
 
         if ("siteInfo" in data) {
-          siteInfoData = data.siteInfo; 
+          siteInfoData = data.siteInfo;
           projects.value.forEach((project) => {
             const projectInfo = siteInfoData[project.name];
             if (projectInfo && projectInfo.description) {

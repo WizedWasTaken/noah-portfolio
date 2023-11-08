@@ -1,5 +1,5 @@
 <template>
-  <div id="first-container">
+  <div class="first-container scroll-snap-item">
     <div id="left-con">
       <h1>Portfolio</h1>
       <div class="img-con">
@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#first-container {
+.first-container {
   height: 100vh;
   display: flex;
 
