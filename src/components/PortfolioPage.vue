@@ -88,7 +88,7 @@ export default {
 
     const modules = [Autoplay, Pagination, Navigation, History];
 
-    let siteInfoData = {}; // Define siteInfoData at a higher scope
+    let siteInfoData = {}; 
 
     const fetchProjects = async () => {
       try {
@@ -98,7 +98,7 @@ export default {
         projects.value = data.projects;
 
         if ("siteInfo" in data) {
-          siteInfoData = data.siteInfo; // Assign data.siteInfo to siteInfoData
+          siteInfoData = data.siteInfo; 
           projects.value.forEach((project) => {
             const projectInfo = siteInfoData[project.name];
             if (projectInfo && projectInfo.description) {
