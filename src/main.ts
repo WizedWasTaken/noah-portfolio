@@ -2,10 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
+import * as FaIcons from "oh-vue-icons/icons/fa";
 
-import * as Icons from "oh-vue-icons/icons";
-
-addIcons(...Object.values(Icons));
+const Fa = Object.values({ ...FaIcons });
+addIcons(...Fa);
 
 const app = createApp(App);
 app.component("v-icon", OhVueIcon);

@@ -47,7 +47,7 @@
 <script lang="ts">
 import { ref, onMounted } from "vue";
 
-export default({
+export default {
   name: "FirstPage",
   setup() {
     const typeValue = ref("");
@@ -106,7 +106,7 @@ export default({
       typeStatus,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -134,28 +134,28 @@ export default({
   }
 
   nav {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      flex-wrap: wrap;
-      height: 10vh;
-      position: absolute;
-      right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 10vh;
+    position: absolute;
+    right: 0;
 
-      a {
-        padding: 1rem 1.5rem;
-        text-decoration: none;
-        color: gray;
-        text-transform: uppercase;
-        border-radius: 25%;
-        transition: 250ms;
+    a {
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: gray;
+      text-transform: uppercase;
+      border-radius: 25%;
+      transition: 250ms;
 
-        &:hover {
-          color: black;
-        }
+      &:hover {
+        color: black;
       }
     }
+  }
 
   #right-con {
     width: 100%;

@@ -4,12 +4,12 @@ import FirstPage from "@/components/FirstPage.vue";
 // @ts-ignore
 import PortfolioPage from "@/components/PortfolioPage.vue";
 
-export default ({
+export default {
   components: {
     FirstPage,
-    PortfolioPage
+    PortfolioPage,
   },
-});
+};
 </script>
 
 <template>
